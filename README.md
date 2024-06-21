@@ -1,1 +1,1 @@
-# simcorp-challengue
+SimCorp Challenge
