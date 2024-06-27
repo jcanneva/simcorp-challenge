@@ -21,20 +21,21 @@ const isCloseChar = (item) => item === ")";
 function sizeParentheses(str) {
   if (!str) return;
   const STR = String(str);
+  let currentLength = 0;
   let maxLength = 0;
-  let helper = [];
+  let count = 0;
   for (let i = 0; i < STR.length; i++) {
     const isOpen = isOpenChar(STR[i]);
     const isClose = isCloseChar(STR[i]);
     const isNotValid = !isOpen && !isClose;
     if (isNotValid) return;
-    if (isOpen) helper.push(i);
+    if (isOpen) count++;
     else if (isClose) {
-      helper.pop();
-      if (helper.length) {
-        const current = i - helper[helper.length - 1];
-        maxLength = maxLength > current ? maxLength : current;
-      }
+      if (count > 0) {
+        currentLength += 2;
+        maxLength = maxLength > currentLength ? maxLength : currentLength;
+        count--;
+      } else currentLength = 0;
     }
   }
   console.log(maxLength);
@@ -44,5 +45,4 @@ sizeParentheses("(()");
 sizeParentheses(")()())");
 sizeParentheses("()))))(()())(");
 sizeParentheses(")))))");
-//TODO initial case is not working
 sizeParentheses("(()())");

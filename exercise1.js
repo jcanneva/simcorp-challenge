@@ -23,12 +23,10 @@ function counter(list) {
   if (!isArray) return;
   let count = 0;
   for (let i = 0; i <= list.length - BOOMERANG_MAX_LENGTH; i++) {
-    let isBoomerang = false;
     const firstElement = list[i];
     const middleElement = list[i + 1];
     const lastElement = list[i + 2];
-    if (firstElement === lastElement && firstElement !== middleElement)
-      isBoomerang = true;
+    const isBoomerang = firstElement === lastElement && firstElement !== middleElement;
     if (isBoomerang) count++;
   }
   console.log(count);
